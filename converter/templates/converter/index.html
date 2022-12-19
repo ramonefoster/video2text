@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="#main">
+    <form method="POST" action="{% url 'converter_url' %}">
+        {% csrf_token %}
+        <label for="video_url"></label>
+        <input id="video_url" name="video_url"/>
+        <button type="submit">Convert</button>
+    </form>
+</section>
+{% endblock content %}
