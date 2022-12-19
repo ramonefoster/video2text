@@ -28,17 +28,16 @@ def video2audio(url):
 
         buffer.seek(0) 
         dat = np.asarray(bytearray(buffer.read()), dtype=np.int32)
-        write(mem_audio, 44100, dat)
+        write(mem_audio, 16000, dat)
         with sr.AudioFile(mem_audio) as source:
             try:
                 print("Starting to get text")               
-                audio = r.record(source)
-                duration = source.DURATION
-                print(duration)
-                txt = r.recognize_google(audio)
-                print("Text: ", txt)
+                audio = r.record(source)                
+                print(source.DURATION)
+                txt = r.recognize_google(audio, language="en-US", show_all=True)
+                print(txt)
             except Exception as e:
-                print(e)        
+                print("ERRO", e)        
     except Exception as e:
         print("err", e)
     
