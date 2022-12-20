@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock css_files %}
+<section id="summary">
+    <h2>{{context.title}}</h2>
+    <div>            
+        {% for keyw in context.keywords %}            
+            <span class="tag">{{ keyw }}</span>
+        {% endfor %}            
+    </div>    
+    <article>
+        <img src="{{context.thumbnail}}" alt="{{context.author}}"/>
+        <address>By {{ViewSingle.author}}</address>
+    </article>
+</section>
+<main>
+    {{context.transcript|linebreaks}}  
+    {{context}}      
+</main>
+{% endblock content %}

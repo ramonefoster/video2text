@@ -1,11 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<section id="#main">
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock css_files %}
+<section id="main">
     <form method="POST" action="{% url 'converter_url' %}">
         {% csrf_token %}
-        <label for="video_url"></label>
-        <input id="video_url" name="video_url"/>
+        <label for="video_url">YouTube URL</label>
+        <input type="text" id="video_url" name="video_url"/>
+        <select name="language" id="language">
+            <option value="pt-BR">Portuguese Brazil</option>
+            {% for lang in lang.items %}
+                <option value="{{lang.1}}">{{lang.0}}</option>
+            {% endfor %} 
+        </select>
         <button type="submit">Convert</button>
     </form>
 </section>
+{% if text_result %}
+    <section id="summary">
+        <h2>{{video_info.title}}</h2>
+        <div>            
+            {% for keyw in video_info.keywords %}            
+                <span class="tag">{{ keyw }}</span>
+            {% endfor %}            
+        </div>    
+        <article>
+            <img src="{{video_info.thumbnail}}" alt="{{video_info.author}}"/>
+            <address>By {{video_info.author}}</address>
+        </article>
+    </section>
+    <main>
+        {{text_result|linebreaks}}        
+    </main>
+{% endif %}
+{% if error %}
+<main>    
+    <p>{{error}}</p>    
+</main>
+{% endif %}
 {% endblock content %}
