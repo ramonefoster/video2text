@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Posts{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'post.css' %}"/>
+<link rel="stylesheet" href="{% static 'allposts.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<section id="all-posts">
+    <h2>These are the latests Transcripts</h2>
+    <ul>
+        {% for post in posts %}
+            {% include "converter/partials/post.html" %}
+        {% endfor %}        
+    </ul>
+</section>
+{% endblock %}

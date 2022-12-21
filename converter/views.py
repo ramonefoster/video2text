@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.views.generic import DetailView
 import pytube as youtube
 from io import BytesIO
@@ -28,6 +28,7 @@ class IndexView(View):
         except:
             x = None      
         if x == None:
+            print("OIIIIII")
             erro, txt, video_info = video2audio(url, language)
             keywords = video_info['keywords']
             slug = slugify(video_info['title'])
@@ -51,6 +52,17 @@ class IndexView(View):
             slug = x.slug
             
         return HttpResponseRedirect("/converted/"+slug)
+
+class ViewAll(ListView):
+    template_name = "converter/all-posts.html"
+    model = PostModel
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        posts = PostModel.objects.all()
+        context["posts"] = posts 
+        return context 
+    
 
 class ViewSingle(DetailView):
     template_name = 'converter/single-post.html'
@@ -109,6 +121,7 @@ def video2audio(url, language):
             
     except Exception as e:
         erro = "Invalid Youtube URL or video is corrupted."
+        print(e)
     
     return (erro, text_recognized, video_info)
 

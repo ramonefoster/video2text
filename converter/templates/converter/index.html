@@ -19,26 +19,4 @@
         <button type="submit">Convert</button>
     </form>
 </section>
-{% if text_result %}
-    <section id="summary">
-        <h2>{{video_info.title}}</h2>
-        <div>            
-            {% for keyw in video_info.keywords %}            
-                <span class="tag">{{ keyw }}</span>
-            {% endfor %}            
-        </div>    
-        <article>
-            <img src="{{video_info.thumbnail}}" alt="{{video_info.author}}"/>
-            <address>By {{video_info.author}}</address>
-        </article>
-    </section>
-    <main>
-        {{text_result|linebreaks}}        
-    </main>
-{% endif %}
-{% if error %}
-<main>    
-    <p>{{error}}</p>    
-</main>
-{% endif %}
 {% endblock content %}

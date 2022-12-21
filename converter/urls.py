@@ -5,5 +5,6 @@ urlpatterns = [
     path("", view=views.IndexView.as_view(), name="index"),
     path("converted", view=views.IndexView.as_view(), name="converter_url"),
     path("converted/<slug:slug>", view=views.ViewSingle.as_view(), name="post_url"),
+    path("all-posts", view=views.ViewAll.as_view(), name="all_posts_url")
 
 ]

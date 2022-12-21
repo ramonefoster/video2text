@@ -63,7 +63,7 @@ input {
     margin-bottom: 0.25rem;
   }
   
-  #summary article {
+  article {
     position: absolute;
     top: 2rem;
     right: 3rem;
@@ -73,7 +73,7 @@ input {
     color: white;
   }
   
-  #summary article img {
+  article img {
     width: 8rem;
     height: 8rem;
     border-radius: 12px;
@@ -97,4 +97,29 @@ input {
     color: #f1f1f1;
     padding: 0.5rem 1rem;
     border-radius: 7px;
+  }
+  
+  #all-posts {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 60rem;
+    margin: -6rem auto 2rem auto;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  #all-posts h2 {
+    text-align: center;
+  }
+  
+  #all-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  #all-posts li {
+    flex: 1;
   }

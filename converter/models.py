@@ -23,7 +23,7 @@ class PostModel(models.Model):
     url = models.CharField(max_length=500, unique=True)
 
     def get_absolute_url(self):
-        return reverse("converter_url", args={self.slug})
+        return reverse("post_url", args={self.slug})
 
     def __str__(self):
         return self.title
